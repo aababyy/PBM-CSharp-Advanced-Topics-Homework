@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class StudentCables
+{
+    static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+        List<int> cables = new List<int>();
+
+        for (int i = 0; i < n; i++)
+        {
+            int cable = int.Parse(Console.ReadLine());
+            string measure = Console.ReadLine();
+            if (measure == "meters")
+            {
+                cable = cable * 100;
+            }
+            if (cable >= 20)
+            {
+                cables.Add(cable);
+            }
+        }
+
+        int cableSum = cables.Sum() - ( 3 * (cables.Count - 1));
+        Console.WriteLine(cableSum / 504);
+        Console.WriteLine(cableSum % 504);
+    }
+}
