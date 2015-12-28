@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+
+class LongestAreaInArray
+{
+    static void Main()
+    {
+        Console.Write("n= ");
+        int n = int.Parse(Console.ReadLine());
+        Console.WriteLine("Enter " + n + " strings, please:");
+
+        string[] sArr = new string[n];
+        sArr[0] = Console.ReadLine();
+
+        int count = 1;
+        int maxCount = 1;
+        string maxSeq = "";
+
+        for (int i = 1; i < n; i++)
+        {
+            sArr[i] = Console.ReadLine();
+            if (sArr[i] == sArr[i - 1])
+            {
+                count++;
+                if (maxCount < count)
+                {
+                    maxCount = count;
+                    maxSeq = sArr[i];
+                }
+            }
+            else
+            {
+                count = 1;
+            }
+        }
+
+        Console.WriteLine();
+        Console.WriteLine(maxCount);
+        for (int i = 0; i < maxCount; i++)
+        {
+            Console.WriteLine(maxSeq);
+        }
+    }
+}
