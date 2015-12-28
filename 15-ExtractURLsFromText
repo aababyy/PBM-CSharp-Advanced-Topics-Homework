@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+
+class ExtractURLsFromText
+{
+    static void Main()
+    {
+        string[] urls = Console.ReadLine().Split();
+
+        for (int i = 0; i < urls.Length; i++)
+        {
+            if ((urls[i].Length > 4) && ((urls[i].Substring(0, 4) == "http") || (urls[i].Substring(0, 4) == "www.")))
+            {
+                if (urls[i][urls[i].Length - 1] == '.')
+                {
+                    urls[i] = urls[i].Substring(0, urls[i].Length - 1);
+                    Console.WriteLine(urls[i]);
+                }
+                else
+                {
+                    Console.WriteLine(urls[i]);
+                }
+            }
+        }
+
+        //Regex Version:
+        /*
+        string input = Console.ReadLine();
+        Match match = Regex.Match(input, @"(http:\/\/[a-z0-9.]+[a-z]+)|(www.[a-z0-9.]+[a-z]+)");
+        Console.WriteLine(match.Value);
+        while (match.Success)
+        {
+            match = match.NextMatch();
+            Console.WriteLine(match.Value);
+        }
+        */
+    }
+}
