@@ -1,0 +1,45 @@
+using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+class CountingAWordInAText
+{
+    static void Main()
+    {
+        string word = Console.ReadLine().ToLower();
+
+        string[] text = Console.ReadLine().
+            Split(new char[] { ' ', '.', ',', '?', '!', '"', '/', '\\', '@', '(', ')', '\n' },
+            StringSplitOptions.RemoveEmptyEntries);
+
+        int count = 0;
+        for (int i = 0; i < text.Length; i++)
+        {
+            text[i] = text[i].ToLower();
+            if (text[i] == word)
+            {
+                count = count + 1;
+            }
+        }
+        Console.WriteLine(count);
+
+        //Regex Version 2
+        /*
+        string word = Console.ReadLine();
+        word = word.ToLower();
+        string text = Console.ReadLine();
+        string[] words = Regex.Split(text, @"\W+");
+
+        int count = 0;
+        for (int i = 0; i < words.Length; i++)
+        {
+            words[i] = words[i].ToLower();
+            if (words[i] == word)
+            {
+                count = count + 1;
+            }
+        }
+        Console.WriteLine(count);
+        */
+    }
+}
