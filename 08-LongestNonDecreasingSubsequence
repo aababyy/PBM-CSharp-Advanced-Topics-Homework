@@ -1,0 +1,68 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+class LongestNonDecreasingSubsequence
+{
+    static void Main()
+    {
+        int[] num = Console.ReadLine().Split().Select(x => int.Parse(x)).ToArray();
+
+        if (num.Length == 0)
+        {
+            Console.WriteLine ("No integers entered.");
+        }
+        else if (num.Length == 1)
+        {
+            Console.WriteLine(num[0]);
+        }
+        else
+        {
+            List<string> subseq = new List<string>();
+            for (int i = 0; i < (num.Length - 1); i++)
+            {
+                string subsEx = num[i].ToString();
+                string subs = subsEx;
+                int currentEx = num[i];
+                int current = currentEx;
+
+                int j = i;
+                while (j < (num.Length - 1))
+                {
+                label:
+                    if (currentEx <= num[j + 1])
+                    {
+                        current = num[j + 1];
+                        subs = subsEx + " " + num[j + 1].ToString();
+                        subseq.Add(subs);
+
+                        for (int jj = j + 1; jj < (num.Length - 1); jj++)
+                        {
+                            if ((current > num[jj + 1]) && (currentEx < num[jj + 1]))
+                            {
+                                j = jj;
+                                goto label;
+                            }
+                        }
+                    }
+                    j = j + 1;
+                    subsEx = subs;
+                    currentEx = current;
+                }
+            }
+
+            int maxLenght = 1;
+            int index = 0;
+            for (int i = 0; i < subseq.Count; i++)
+            {
+                List<string> count = new List<string>(subseq[i].Split(' '));
+                if (count.Count > maxLenght)
+                {
+                    maxLenght = count.Count;
+                    index = i;
+                }
+            }
+            Console.WriteLine(subseq[index]);
+        }
+    }
+}
