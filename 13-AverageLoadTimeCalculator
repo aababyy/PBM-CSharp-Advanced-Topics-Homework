@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+
+class AverageLoadTimeCalculator
+{
+    static void Main()
+    {
+        Dictionary<string, double> loadTimes = new Dictionary<string, double>();
+        Dictionary<string, int> count = new Dictionary<string, int>();
+
+        string line = Console.ReadLine();
+
+        while(!string.IsNullOrEmpty(line))        
+        {
+            string[] rep = line.Split(' ');
+
+            if (!loadTimes.ContainsKey(rep[2]))
+            {
+                loadTimes.Add(rep[2], double.Parse(rep[3]));
+                count.Add(rep[2], 1);
+            }
+            else
+            {
+                loadTimes[rep[2]] = loadTimes[rep[2]] + double.Parse(rep[3]);
+                count[rep[2]] = count[rep[2]] + 1;
+            }
+
+            line = Console.ReadLine();
+        }
+
+        foreach (string url in loadTimes.Keys)
+        {
+            Console.WriteLine("{0} -> {1}", url, loadTimes[url] / count[url]);
+        }
+    }
+}
