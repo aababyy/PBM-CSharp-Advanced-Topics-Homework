@@ -1,0 +1,38 @@
+using System;
+
+class BitFlipper
+{
+    static void Main()
+    {
+        ulong n = UInt64.Parse(Console.ReadLine());
+        string bin = Convert.ToString((long)n, 2).PadLeft(64, '0');
+        char[] binChar = bin.ToCharArray();
+
+        int i = 1;
+        while (i < (binChar.Length - 1))
+        {
+            if ((binChar[i - 1] == binChar[i]) && (binChar[i] == binChar[i + 1]))
+            {
+                if (binChar[i] == '1')
+                {
+                    binChar[i - 1] = '0';
+                    binChar[i] = '0';
+                    binChar[i + 1] = '0';
+                }
+                else
+                {
+                    binChar[i - 1] = '1';
+                    binChar[i] = '1';
+                    binChar[i + 1] = '1';
+                }
+                i = i + 3;
+            }
+            else
+            {
+                i = i + 1;
+            }
+        }
+        bin = new string(binChar);
+        Console.WriteLine(Convert.ToUInt64(bin, 2));
+    }
+}
