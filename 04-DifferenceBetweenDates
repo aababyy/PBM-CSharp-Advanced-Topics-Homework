@@ -1,0 +1,15 @@
+using System;
+
+class DifferenceBetweenDates
+{
+    static void Main()
+    {
+        Console.WriteLine("Please, enter first date in format dd.MM.yyyy");
+        DateTime firstDate = DateTime.Parse(Console.ReadLine());
+        Console.WriteLine("Please, enter second date in format dd.MM.yyyy");
+        DateTime secondDate = DateTime.Parse(Console.ReadLine());
+
+        TimeSpan daysBetween = secondDate.Subtract(firstDate);
+        Console.WriteLine(daysBetween.TotalDays);
+    }
+}
