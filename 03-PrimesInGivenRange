@@ -1,0 +1,76 @@
+using System;
+using System.Collections.Generic;
+
+class PrimesInGivenRange
+{
+    static void Main()
+    {
+        Console.Write("startNum= ");
+        int startNum = int.Parse(Console.ReadLine());
+        Console.Write("endNum= ");
+        int endNum = int.Parse(Console.ReadLine());
+
+        List<int> primes = FindPrimesInRange(startNum, endNum);
+
+        if (primes.Count < 1)
+        {
+            Console.WriteLine("(empty list)");
+        }
+        else
+        {
+            PrintPrimes(primes);
+        }
+
+        //Version 2:
+        /*
+        if (FindPrimesInRange(startNum, endNum).Count < 1)
+        {
+            Console.WriteLine("(empty list)");
+        }
+        else
+        {
+            PrintPrimes(FindPrimesInRange(startNum, endNum));
+        }
+        */
+    }
+
+    static List<int> FindPrimesInRange (int start, int end)
+    {
+        List<int> prim = new List<int>();
+
+        for (int i = start; i <= end; i++)
+        {
+            bool isPrime = true;
+
+            for (int j = 2; j <= Math.Sqrt(i); j++)
+            {
+                if (i % j == 0)
+                {
+                    isPrime = false;
+                }
+            }
+
+            if (isPrime && (i > 1))
+            {
+                prim.Add(i);
+            }
+        }
+
+        return prim;
+    }
+
+    static void PrintPrimes(List<int> pr)
+    {
+        Console.WriteLine(string.Join(", ", pr));
+
+        /*
+        //Version 2:
+        Console.Write(primes[0]);
+        for (int i = 1; i < primes.Count; i++)
+        {
+            Console.Write(", " + primes[i]);
+        }
+        Console.WriteLine();
+        */
+    }
+}
