@@ -1,0 +1,44 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+class JoinLists
+{
+    static void Main()
+    {
+        List<string> firstIntList = new List<string>(Console.ReadLine().Split(' '));
+        List<string> secondIntList = new List<string>(Console.ReadLine().Split(' '));
+
+        List<string> result = firstIntList.Union(secondIntList).ToList();
+
+        result.Sort();
+        Console.WriteLine(string.Join(" ", result));
+
+        //Version 2
+        /*
+        foreach (string s in firstIntList)
+        {
+            if (!result.Contains(s))
+            {
+                result.Add(s);
+            }
+        }
+
+        foreach (string s in secondIntList)
+        {
+            if (!result.Contains(s))
+            {
+                result.Add(s);
+            }
+        }
+
+        result.Sort();
+
+        foreach (string item in result)
+        {
+            Console.Write(item + " ");
+        }
+        Console.WriteLine();
+        */
+    }
+}
