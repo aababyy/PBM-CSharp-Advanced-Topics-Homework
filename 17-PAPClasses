@@ -1,0 +1,48 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+class PAPClasses
+{
+    static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+
+        Polygon polygon = new Polygon();
+        polygon.Points = new List<Point>();
+
+        for (int i = 0; i < n; i++)
+        {
+            string[] sp = Console.ReadLine().Split(' ');
+            Point p = new Point() { X = double.Parse(sp[0]), Y = double.Parse(sp[1]) };
+            polygon.Points.Add(p);
+        }
+
+        double sum = (polygon.Points[n - 1].X * polygon.Points[0].Y) - (polygon.Points[n - 1].Y * polygon.Points[0].X);
+        double perimeter = Math.Sqrt(Math.Pow(Math.Abs(polygon.Points[n - 1].X - polygon.Points[0].X), 2)
+            + Math.Pow(Math.Abs(polygon.Points[n - 1].Y - polygon.Points[0].Y), 2));
+
+        for (int i = 0; i < n - 1; i++)
+        {
+            sum = sum + (polygon.Points[i].X * polygon.Points[i + 1].Y - polygon.Points[i].Y * polygon.Points[i + 1].X);
+            perimeter = perimeter + Math.Sqrt(Math.Pow(Math.Abs(polygon.Points[i].X - polygon.Points[i + 1].X), 2)
+            + Math.Pow(Math.Abs(polygon.Points[i].Y - polygon.Points[i + 1].Y), 2));
+        }
+
+        double area = Math.Abs(sum / 2);
+
+        Console.WriteLine("perimeter = {0:F2}", perimeter);
+        Console.WriteLine("area = {0:F2}", area);
+    }
+}
+
+public class Point
+{
+    public double X { get; set; }
+    public double Y { get; set; }
+}
+
+public class Polygon
+{
+    public List<Point> Points { get; set; }
+}
