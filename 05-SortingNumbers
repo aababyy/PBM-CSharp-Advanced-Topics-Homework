@@ -1,0 +1,32 @@
+using System;
+
+class SortingNumbers
+{
+    static void Main()
+    {
+        Console.Write("n= ");
+        int n = int.Parse(Console.ReadLine());
+        Console.WriteLine("Enter " + n + " integers, please");
+
+        int[] nArr = new int[n];
+        for (int i = 0; i < n; i++)
+        {
+            nArr[i] = int.Parse(Console.ReadLine());
+        }
+
+        Array.Sort(nArr);
+        Console.WriteLine();
+
+        //Print Version 1:
+        for (int i = 0; i < n; i++)
+        {
+            Console.WriteLine(nArr[i]);
+        }
+
+        //Print Version 2:
+        //Console.WriteLine(string.Join("\n", nArr));
+
+        //Print Version 3:
+        //Array.ForEach(nArr, x => Console.WriteLine(x));
+    }
+}
