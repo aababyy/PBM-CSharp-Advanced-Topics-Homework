@@ -1,0 +1,81 @@
+using System;
+using System.Collections.Generic;
+
+class CountOfLetters
+{
+    static void Main()
+    {
+        //Version 1: Dictionary
+        string[] str = Console.ReadLine().Split();
+
+        SortedDictionary<string, int> letters = new SortedDictionary<string, int>();
+
+        for (int i = 0; i < str.Length; i++)
+        {
+            if (!letters.ContainsKey(str[i]))
+            {
+                letters.Add(str[i], 1);
+            }
+            else
+            {
+                letters[str[i]] = letters[str[i]] + 1;
+            }
+        }
+
+        foreach (KeyValuePair<string, int> kvp in letters)
+        {
+            Console.WriteLine("{0} -> {1}", kvp.Key, kvp.Value);
+        }
+
+        //Version 2: Lists
+        /*
+        string[] s = Console.ReadLine().Split();
+        Array.Sort(s);
+        List<string> let = new List<string>();
+        List<int> count = new List<int>();
+
+        for (int i = 0; i < s.Length; i++)
+        {
+            if (!let.Contains(s[i]))
+            {
+                let.Add(s[i]);
+                count.Add(1);
+            }
+            else
+            {
+                int ind = let.IndexOf(s[i]);
+                count[ind] = count[ind] + 1;
+            }
+        }
+
+        for (int i = 0; i < letters.Count; i++)
+        {
+            Console.WriteLine(let[i] + " -> " + count[i]);
+        }
+        */
+
+        //Version 3: Array
+        /*
+        string[] str = Console.ReadLine().Split();
+        Array.Sort(str);
+
+        for (int i = 0; i < str.Length; )
+        {
+            int count = 1;
+            for (int j = i + 1; j < str.Length; j++)
+            {
+                if (str[i] == str[j])
+                {
+                    count++;
+                }
+                else
+                {
+                    Console.WriteLine("{0} -> {1}", str[i], count);
+                    i = j;
+                    break;
+                }
+            }
+        }
+        */
+    }
+}
